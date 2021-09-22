@@ -1,0 +1,23 @@
+.question-options{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button{
+        border-radius: 7% 93% 10% 90% / 83% 9% 91% 17% ;
+        border: none;
+        padding: 18px;
+        color: #9381FF;
+        font-size: 1rem;
+        width: 45%;
+        margin-bottom: 10px;
+    }
+    button:hover{
+        background-color: #9381FF;
+        color: #F8F7FF;
+        font-weight: 700;
+        transition: ease-in-out 0.3s;
+        letter-spacing: 2px;
+    }
+}

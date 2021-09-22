@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lobster&display=swap');
+
+body{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Lobster';
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.App{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #9381FF;
+}
+
+/*
+9381FF
+B8B8FF
+F8F7FF
+FFEEDD
+FFD8BE
+*/
