@@ -85,7 +85,7 @@ export default function Login({setIsLog, setActualUser}){
                 <label htmlFor="">Username</label>
                 <input type="text"  id='username'/>
                 <label htmlFor="">Password</label>
-                <input type="text" id='password'/>
+                <input type="password" id='password'/>
             </div>
             <div className='login-btn'>
                 <button onClick={validateUser}>Login</button>
