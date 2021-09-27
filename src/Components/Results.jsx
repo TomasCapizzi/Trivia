@@ -6,11 +6,8 @@ export default function Results({correct, incorrect, changeQuestion, setScore , 
 
 
     function compareResult(res){
-        console.log(res)
         if(res === correct){
             setScore(score + 1)
-        } else{
-            console.log('Incorrect')
         }
 
     }

@@ -1,21 +1,21 @@
 import React,{useState, useEffect} from "react";
 import Question from "./Question";
 import {FaPlay} from "react-icons/fa";
-import {HiRefresh} from 'react-icons/hi'
+import {HiRefresh} from 'react-icons/hi';
+import { database } from "../Firebase/users";
+import {BiLogOut} from 'react-icons/bi'
+import ScoreList from "./ScoreList";
 
 
-export default function Trivia(){
-
-
-  //  const url = 'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple'
-
-   // const [url, setUrl] = useState('')
+export default function Trivia({actualUser, setIsLog}){
 
     const [trivia, setTrivia] = useState([])
     const [listOfQuestions, setListOfQuestions] = useState();
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [score, setScore] = useState(0);
     const [handler, setHandler] = useState(false)
+
+    //const [users, setUsers] = useState([])
     
     async function getQuestions(url){
 
@@ -30,25 +30,46 @@ export default function Trivia(){
       const category = document.getElementById('category');
       const total = document.getElementById('total')
       setListOfQuestions(total.value);
-
-      console.log(mode.value, category.value, total.value);
       let url = `https://opentdb.com/api.php?amount=${total.value}&category=${category.value}&difficulty=${mode.value}&type=multiple`
 
       getQuestions(url);
       setHandler(true)
     }
     
-      function changeQuestion(e){
-          setCurrentQuestion(currentQuestion + 1);      
+      function changeQuestion(){
+          setCurrentQuestion(currentQuestion + 1);
     }
 
 
     function restarGame(){
+      addScoreData()
       setHandler(false);
       setCurrentQuestion(0);
       setScore(0);
       setTrivia([])
     }
+
+    async function addScoreData(log){
+      const scoreData = await database.collection('scores');
+      const scoreItem = {
+        score: score,
+        user: actualUser,
+        mode: document.getElementById('difficulty').value,
+        date: new Date()
+      }
+      scoreData.add(scoreItem);
+
+      log && setIsLog(false) 
+    }
+
+    function checkOut(){
+      addScoreData(true)
+      setHandler(false);
+      setCurrentQuestion(0);
+      setScore(0);
+      setTrivia([])
+    }
+
       useEffect(()=>{
         
       },[])
@@ -60,7 +81,6 @@ export default function Trivia(){
           {
             !handler ? 
           <div className='start-screen'>
-
             <div className='menu'>
 
               <select name="category" id="category">
@@ -91,7 +111,8 @@ export default function Trivia(){
 
               <FaPlay onClick={startGame} />
               </div>
-              <h3>Quiz!</h3>
+              <h3>Quiz<span>!</span></h3>
+              <p>Good luck <span>{actualUser}</span></p>
             </div>
             :
 
@@ -102,16 +123,18 @@ export default function Trivia(){
               {
                 trivia.length ? 
                 <Question question={trivia[currentQuestion]} changeQuestion={changeQuestion}  setScore={setScore} score={score}  listOfQuestions={listOfQuestions}/>
-                 : <div class="spinner">
-                 <div class="double-bounce1"></div>
-                 <div class="double-bounce2"></div>
+                 : <div className="spinner">
+                 <div className="double-bounce1"></div>
+                 <div className="double-bounce2"></div>
                </div>
               }
               </div>
               : <div className='score-screen'>
-                <h3>Your final score is: </h3>
+                <BiLogOut className='check-out' onClick={checkOut}/>
+                <h3>{actualUser.toUpperCase()} your final score is: </h3>
                 <p>{score}</p>
                 <HiRefresh onClick={restarGame}/>
+                <ScoreList actualUser={actualUser}/>
               </div>
             }
           </div>

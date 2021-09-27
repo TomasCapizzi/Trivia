@@ -2,20 +2,34 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 550px;
+    height: 600px;
     justify-content: flex-start;
     align-items: center;
 
 
+    .check-out{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #FFD8BE;
+        font-size: 40px;
+        cursor: pointer;
+    }
+    .check-out:hover{
+        color: #B8B8FF;
+        transition: ease-in-out 0.2s;
+    }
+
     .start-screen{
+        position: relative;
         width: 100%;
         display: flex;
         align-items: center;
-        width: 40%;
+        width: 800px;
         height: 100%;
         flex-direction: column;
-        background-color: #B8B8FF;
-        border-radius: 8% 92% 10% 90% / 83% 9% 91% 17% ;
+        background-color: #9381FF;
+        border-radius:25px;
         padding: 40px;
         box-shadow: 0 5px 12px rgba(147, 129, 255, 0.6);
 
@@ -24,12 +38,12 @@
             width: 90%;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 15px;
 
             select{
                 border: none;
                 padding: 10px;
-                border-radius: 8% 92% 10% 90% / 83% 9% 91% 17% ;
+                border-radius:13px;
                 background-color: #FFD8BE;
                 color: #9381FF;
                 font-weight: 700;
@@ -45,7 +59,7 @@
                 cursor: pointer;
             }
             svg:hover{
-                color: #9381FF;
+                color: #B8B8FF;
                 transition: ease-in-out 0.3s;
             }
         }
@@ -57,11 +71,23 @@
             width: 100%;
             text-align: center;
             color: #FFD8BE;
+            span{
+                color: #B8B8FF;
+            }
+        }
+        p{
+            color: #B8B8FF;
+            font-size: 1.3rem;
+            span{
+                color: #FFD8BE;
+                font-weight: 700;
+            }
         }
     }
 
     .score-screen{
         display: flex;
+        position: relative;
         flex-direction: column;
         width: 100%;
         align-items: center;
@@ -78,12 +104,13 @@
             color: #FFD8BE;
         }
         svg{
-            color: #9381FF;
-            font-size: 2.5rem;
+            color: #FFD8BE;
+            font-size: 3rem;
             cursor: pointer;
         }
         svg:hover{
-            font-size: 2.7rem;
+            color: #B8B8FF;
+            font-size: 2.85rem;
             transition: ease-in-out 0.2s;
         }
     }
@@ -91,17 +118,17 @@
 
 }
 
-@media only screen and(max-width: 600px){
+@media only screen and(max-width: 400px){
 
     .trivia-container{    
-    
+
         .start-screen{
-            width: 70%;
-            border-radius: 6% 96% 6% 99% / 88% 7% 96% 11% ;
-            padding: 45px;
+            width: 100%;
+            border-radius: 0px;
+            padding: 20px 0;
     
             .menu{
-                width: 100%;
+                width: 85%;
                 flex-wrap: wrap;
                 margin-top: 0px;
     
@@ -130,7 +157,7 @@
             width: 100%;
             align-items: center;
             h3{
-                font-size: 2.3rem;
+                font-size: 2rem;
                 margin-top: 100px;
                 letter-spacing: 5px;
                 width: 100%;
@@ -138,18 +165,143 @@
                 color: #FFD8BE;
             }
             p{
-                font-size: 2.4rem;
+                font-size: 2rem;
                 color: #FFD8BE;
             }
             svg{
-                color: #9381FF;
+                color: #FFD8BE;
                 font-size: 2.5rem;
                 cursor: pointer;
             }
-            svg:hover{
-                font-size: 2.7rem;
-                transition: ease-in-out 0.2s;
+
+        }
+    
+    
+    }
+
+
+}
+
+@media only screen and(min-width: 400px) and(max-width: 800px){
+
+    .trivia-container{    
+
+        .start-screen{
+            width: 90%;
+            border-radius: 25px;
+            padding: 20px 0;
+    
+            .menu{
+                width: 85%;
+                flex-wrap: wrap;
+                margin-top: 0px;
+    
+                select{
+                    width: 80px;    
+                }
+                select:nth-child(1){
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
             }
+    
+            h3{
+                font-size: 7rem;
+                margin-top: 70px;
+                letter-spacing: 5px;
+                width: 100%;
+                text-align: center;
+                color: #FFD8BE;
+            }
+        }
+    
+        .score-screen{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            h3{
+                font-size: 2rem;
+                margin-top: 100px;
+                letter-spacing: 5px;
+                width: 100%;
+                text-align: center;
+                color: #FFD8BE;
+            }
+            p{
+                font-size: 2rem;
+                color: #FFD8BE;
+            }
+            svg{
+                color: #FFD8BE;
+                font-size: 2.5rem;
+                cursor: pointer;
+            }
+
+        }
+    
+    
+    }
+
+
+}
+
+@media only screen and(min-width: 800px) and(max-width: 1200px){
+
+    .trivia-container{    
+
+        .start-screen{
+            width: 800px;
+            border-radius: 25px;
+            padding: 20px 0;
+    
+            .menu{
+                width: 85%;
+                flex-wrap: wrap;
+                margin-top: 0px;
+    
+                select{
+                    width: 80px;    
+                }
+                select:nth-child(1){
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+    
+            h3{
+                font-size: 7rem;
+                margin-top: 70px;
+                letter-spacing: 5px;
+                width: 100%;
+                text-align: center;
+                color: #FFD8BE;
+            }
+        }
+    
+        .score-screen{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            h3{
+                font-size: 2rem;
+                margin-top: 100px;
+                letter-spacing: 5px;
+                width: 100%;
+                text-align: center;
+                color: #FFD8BE;
+            }
+            p{
+                font-size: 2rem;
+                color: #FFD8BE;
+            }
+            svg{
+                color: #FFD8BE;
+                font-size: 2.5rem;
+                cursor: pointer;
+            }
+
         }
     
     
