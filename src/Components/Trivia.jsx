@@ -1,52 +1,37 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 import Question from "./Question";
 import {FaPlay} from "react-icons/fa";
 import {HiRefresh} from 'react-icons/hi';
 import { database } from "../Firebase/users";
 import {BiLogOut} from 'react-icons/bi'
 import ScoreList from "./ScoreList";
+import useTriviaQuestions from "../Hooks/useTriviaQuestions";
+import useScore from "../Hooks/useScore";
 
 
 export default function Trivia({actualUser, setIsLog}){
 
-    const [trivia, setTrivia] = useState([])
-    const [listOfQuestions, setListOfQuestions] = useState();
-    const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [score, setScore] = useState(0);
+    const {trivia,currentQuestion, getQuestions, changeQuestion, reset, listOfQuestions, totalQuestions} = useTriviaQuestions();
+    const {score, incrementScore, resetScore} = useScore();
     const [handler, setHandler] = useState(false)
 
-    //const [users, setUsers] = useState([])
-    
-    async function getQuestions(url){
-
-        const answer = await fetch(url);
-        const ans = await answer.json();
-        setTrivia(ans.results)
-      } 
     
     function startGame(){
-
       const mode = document.getElementById('difficulty');
       const category = document.getElementById('category');
       const total = document.getElementById('total')
-      setListOfQuestions(total.value);
+      totalQuestions(total.value);
       let url = `https://opentdb.com/api.php?amount=${total.value}&category=${category.value}&difficulty=${mode.value}&type=multiple`
 
       getQuestions(url);
       setHandler(true)
     }
-    
-      function changeQuestion(){
-          setCurrentQuestion(currentQuestion + 1);
-    }
-
 
     function restarGame(){
       addScoreData()
       setHandler(false);
-      setCurrentQuestion(0);
-      setScore(0);
-      setTrivia([])
+      resetScore()
+      reset();
     }
 
     async function addScoreData(log){
@@ -65,15 +50,9 @@ export default function Trivia({actualUser, setIsLog}){
     function checkOut(){
       addScoreData(true)
       setHandler(false);
-      setCurrentQuestion(0);
-      setScore(0);
-      setTrivia([])
+      reset();
+      resetScore();
     }
-
-      useEffect(()=>{
-        
-      },[])
-    
 
 
     return(
@@ -122,7 +101,7 @@ export default function Trivia({actualUser, setIsLog}){
               <div className='question'>   
               {
                 trivia.length ? 
-                <Question question={trivia[currentQuestion]} changeQuestion={changeQuestion}  setScore={setScore} score={score}  listOfQuestions={listOfQuestions}/>
+                <Question question={trivia[currentQuestion]} changeQuestion={changeQuestion}  incrementScore={incrementScore} score={score}  listOfQuestions={listOfQuestions}/>
                  : <div className="spinner">
                  <div className="double-bounce1"></div>
                  <div className="double-bounce2"></div>

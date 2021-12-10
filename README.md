@@ -8,6 +8,8 @@ Trivia realizada con la API [OpenTriviaDB](https://opentdb.com/)
 
 React
 
+Custom Hooks
+
 API Rest
 
 Sass

@@ -1,14 +1,14 @@
 import React, {useState,useEffect} from "react";
 
-export default function Results({correct, incorrect, changeQuestion, setScore , score}){
+export default function Results({correct, incorrect, changeQuestion, incrementScore,score}){
 
     const [results, setResults] = useState([])
 
 
     function compareResult(res){
         if(res === correct){
-            setScore(score + 1)
-        }
+            incrementScore()
+        } 
 
     }
 
