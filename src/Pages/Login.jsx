@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
+
 import { database } from "../Firebase/users";
 
 export default function Login({setIsLog, setActualUser}){
@@ -17,7 +18,6 @@ export default function Login({setIsLog, setActualUser}){
 
 
     function validateUser(){
-        console.log(users)
        // setIsLog(true)
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
