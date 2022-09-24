@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import Login from './Components/Login';
-import Trivia from './Components/Trivia';
 import './Styles/main.scss'
 
+import React, {useState} from 'react';
+
+import Login from './Pages/Login';
+import Trivia from './Pages/Trivia';
 
 function App() {
 
