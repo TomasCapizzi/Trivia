@@ -6,7 +6,6 @@ const useTriviaQuestions = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0)
     
     async function getQuestions(url){
-
         const answer = await fetch(url);
         const ans = await answer.json();
         setTrivia(ans.results)
